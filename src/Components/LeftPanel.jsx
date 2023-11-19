@@ -17,6 +17,7 @@ function LeftPanel({schema,setSchema}) {
         theme="light"
         allowedModes={['text']}
         mode="text"
+        htmlElementProps={{style: {height: "100vh"}}}
         // style={editorStyle}
     />
   )

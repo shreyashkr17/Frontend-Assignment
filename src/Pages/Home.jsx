@@ -15,11 +15,11 @@ function Home() {
         <div className="left-view">
             <LeftPanel schema={schema} setSchema={setSchema}/>
         </div>
-        <div className="right-view">
-            <div className="FormContainer">
+        {schema && schema.length > 0 && <div className="right-view">
+            <div className={`${schema?"FormContainer":"FormContainerDisp"}`}>
               <RightPanel schema={schema}/>
             </div>
-        </div>
+        </div>}
       </div> 
     </div>
   )

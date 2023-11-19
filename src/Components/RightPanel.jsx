@@ -1,10 +1,31 @@
 import { isVisible } from "@testing-library/user-event/dist/utils";
 import React, { useEffect, useState } from "react";
 import "./css/RightPanel.css";
+import InfoIcon from "@mui/icons-material/Info";
 
 function RightPanel({ schema }) {
   const [naplesCheck, setNaplesCheck] = useState(true);
   const [nyCheck, setNyCheck] = useState(false);
+
+  // Input Case Hovering State Change
+  const [isHoverInput, setIsHoverInput] = useState(false);
+  const [isHoverInputTwo, setIsHoverInputTwo] = useState(false);
+
+  // Group Case Hovering State Change
+  const [isHoverGrp, setIsHoverGrp] = useState(false);
+  const [isHoverGrpTwo, setIsHoverGrpTwo] = useState(false);
+
+  // Select Case Hovering State CHange
+  const [isHoverSelect, setIsHoverSelect] = useState(false);
+  const [isHoverSelectTwo, setIsHoverSelectTwo] = useState(false);
+  const [isHoverSelectThree, setIsHoverSelectThree] = useState(false);
+  const [isHoverSelectFour, setIsHoverSelectFour] = useState(false);
+  const [isHoverSelectFive, setIsHoverSelectFive] = useState(false);
+
+  // Switch Case Hovering State Change
+  const [isHoverSwitch,setIsHoverSwitch] = useState(false);
+  const [isHoverSwitchTwo,setIsHoverSwitchTwo] = useState(false);
+
   const ignoreFields = [];
   const ToppingField = [];
 
@@ -132,6 +153,41 @@ function RightPanel({ schema }) {
             <label className="InputLabel">
               {field.label}
               <span>*</span>
+              <InfoIcon
+                style={{
+                  fontSize: "15px",
+                  cursor: "pointer",
+                  marginLeft: "10px",
+                  color: "rgb(211,211,211)",
+                }}
+                onMouseEnter={() => {
+                  if (field.label === "Pizza Name") {
+                    setIsHoverInput(true);
+                    setIsHoverInputTwo(false);
+                  } else if (field.label === "Type") {
+                    setIsHoverInputTwo(true);
+                    setIsHoverInput(false);
+                  }
+                }}
+                onMouseLeave={() => {
+                  setIsHoverInput(false);
+                  setIsHoverInputTwo(false);
+                }}
+              />
+              {isHoverInput && field.label === "Pizza Name" && (
+                <div className="HoverContainer">
+                  <h3>{field.label}</h3>
+                  <hr className="hr" />
+                  <h4>{field.description}</h4>
+                </div>
+              )}
+              {isHoverInputTwo && field.label === "Type" && (
+                <div className="HoverContainer">
+                  <h3>{field.label}</h3>
+                  <hr className="hr" />
+                  <h4>{field.description}</h4>
+                </div>
+              )}
             </label>
             <div className="InputCont">
               <input
@@ -150,7 +206,46 @@ function RightPanel({ schema }) {
           <div className="GroupContainer">
             <label className="InputLabel">
               {field.label === "Pizza_type" ? `Pizza Type` : field.label}
-              {field.label === "Pizza_type" && <span>*</span>}
+              {field.label === "Pizza_type" && (
+                <>
+                  <span>*</span>
+                  <InfoIcon
+                    style={{
+                      fontSize: "15px",
+                      cursor: "pointer",
+                      marginLeft: "10px",
+                      color: "rgb(211,211,211)",
+                    }}
+                    onMouseEnter={() => {
+                      if (field.label === "Pizza_type") {
+                        setIsHoverGrp(true);
+                        setIsHoverGrpTwo(false);
+                      } else if (field.label === "Toppings") {
+                        setIsHoverGrpTwo(true);
+                        setIsHoverGrp(false);
+                      }
+                    }}
+                    onMouseLeave={() => {
+                      setIsHoverGrp(false);
+                      setIsHoverGrpTwo(false);
+                    }}
+                  />
+                  {isHoverGrp && field.label === "Pizza_type" && (
+                    <div className="HoverContainer">
+                      <h3>{field.label}</h3>
+                      <hr className="hr" />
+                      <h4>{field.description}</h4>
+                    </div>
+                  )}
+                  {isHoverGrpTwo && field.label === "Toppings" && (
+                    <div className="HoverContainer">
+                      <h3>{field.label}</h3>
+                      <hr className="hr" />
+                      <h4>{field.description}</h4>
+                    </div>
+                  )}
+                </>
+              )}
             </label>
             <hr className="hr" />
           </div>
@@ -202,13 +297,48 @@ function RightPanel({ schema }) {
                 defaultChecked={field.validate && field.validate.defaultValue}
                 required={field.validate && field.validate.required}
                 readOnly={field.validate && field.validate.immutable}
-                style={{ width: "20px", height: "20px", marginLeft: "10px" }}
+                style={{ width: "20px", height: "20px", marginLeft: "10px" ,cursor:"Pointer"}}
               />
             </div>
 
             <label className="InputLabel">
               {field.label}
               <span>*</span>
+              <InfoIcon
+                style={{
+                  fontSize: "15px",
+                  cursor: "pointer",
+                  marginLeft: "10px",
+                  color: "rgb(211,211,211)",
+                }}
+                onMouseEnter={()=>{
+                  if(field.label === "Cheeseburst"){
+                    setIsHoverSwitch(true);
+                    setIsHoverSwitchTwo(false);
+                  }else if(field.label === "Include_seasonings"){
+                    setIsHoverSwitch(false);
+                    setIsHoverSwitchTwo(true);
+                  }
+                }}
+                onMouseLeave= {()=>{
+                  setIsHoverSwitch(false);
+                  setIsHoverSwitchTwo(false);
+                }}
+              />
+              {isHoverSwitch && field.label === "Cheeseburst" && (
+                <div className="HoverContainer">
+                  <h3>{field.label}</h3>
+                  <hr className="hr" />
+                  <h4>{field.description}</h4>
+                </div>
+              )}
+              {isHoverSwitchTwo && field.label === "Include_seasonings" && (
+                <div className="HoverContainer">
+                  <h3>{field.label}</h3>
+                  <hr className="hr" />
+                  <h4>{field.description}</h4>
+                </div>
+              )}
             </label>
           </div>
         );
@@ -219,6 +349,89 @@ function RightPanel({ schema }) {
               <label className="InputLabel">
                 {field.label}
                 <span>*</span>
+                <InfoIcon
+                  style={{
+                    fontSize: "15px",
+                    cursor: "pointer",
+                    marginLeft: "10px",
+                    color: "rgb(211,211,211)",
+                  }}
+                  onMouseEnter={() => {
+                    if (field.label === "Slices") {
+                      setIsHoverSelect(true);
+                      setIsHoverSelectTwo(false);
+                      setIsHoverSelectThree(false);
+                      setIsHoverSelectFour(false);
+                      setIsHoverSelectFive(false);
+                    } else if (field.label === "Sauce") {
+                      setIsHoverSelect(false);
+                      setIsHoverSelectTwo(true);
+                      setIsHoverSelectThree(false);
+                      setIsHoverSelectFour(false);
+                      setIsHoverSelectFive(false);
+                    } else if (field.label === "Main_topping") {
+                      setIsHoverSelect(false);
+                      setIsHoverSelectTwo(false);
+                      setIsHoverSelectThree(true);
+                      setIsHoverSelectFour(false);
+                      setIsHoverSelectFive(false);
+                    } else if (field.label === "Second_topping") {
+                      setIsHoverSelect(false);
+                      setIsHoverSelectTwo(false);
+                      setIsHoverSelectThree(false);
+                      setIsHoverSelectFour(true);
+                      setIsHoverSelectFive(false);
+                    } else if (field.label === "Size") {
+                      setIsHoverSelect(false);
+                      setIsHoverSelectTwo(false);
+                      setIsHoverSelectThree(false);
+                      setIsHoverSelectFour(false);
+                      setIsHoverSelectFive(true);
+                    }
+                  }}
+                  onMouseLeave={() => {
+                    setIsHoverSelect(false);
+                    setIsHoverSelectTwo(false);
+                    setIsHoverSelectThree(false);
+                    setIsHoverSelectFour(false);
+                    setIsHoverSelectFive(false);
+                  }}
+                />
+                {isHoverSelect && field.label === "Slices" && (
+                <div className="HoverContainer">
+                  <h3>{field.label}</h3>
+                  <hr className="hr" />
+                  <h4>{field.description}</h4>
+                </div>
+              )}
+              {isHoverSelectTwo && field.label === "Sauce" && (
+                <div className="HoverContainer">
+                  <h3>{field.label}</h3>
+                  <hr className="hr" />
+                  <h4>{field.description}</h4>
+                </div>
+              )}
+              {isHoverSelectThree && field.label === "Main_topping" && (
+                <div className="HoverContainer">
+                  <h3>{field.label}</h3>
+                  <hr className="hr" />
+                  <h4>{field.description}</h4>
+                </div>
+              )}
+              {isHoverSelectFour && field.label === "Second_topping" && (
+                <div className="HoverContainer">
+                  <h3>{field.label}</h3>
+                  <hr className="hr" />
+                  <h4>{field.description}</h4>
+                </div>
+              )}
+              {isHoverSelectFive && field.label === "Size" && (
+                <div className="HoverContainer">
+                  <h3>{field.label}</h3>
+                  <hr className="hr" />
+                  <h4>{field.description}</h4>
+                </div>
+              )}
               </label>
               <select className="SelectTag">
                 {field.validate &&
@@ -267,14 +480,14 @@ function RightPanel({ schema }) {
                     console.log(subParam);
                     return renderFields(subParam);
                   });
-              })}
+                })}
               {GlobalnyFields &&
                 GlobalnyFields.map((field) => {
                   return field.subParameters.map((subParam) => {
                     console.log(subParam);
                     return renderFields(subParam);
                   });
-              })}
+                })}
               {field.subParameters.map((subParam) => {
                 if (subParam.uiType === "Select") {
                   console.log("Radio Fields in the Main:", subParam);
@@ -289,7 +502,7 @@ function RightPanel({ schema }) {
               })}
             </>
           );
-        }else if(field.uiType === "Group" || field.label === "Toppings"){
+        } else if (field.uiType === "Group" || field.label === "Toppings") {
           return (
             <>
               {renderFields(field)}
@@ -306,14 +519,20 @@ function RightPanel({ schema }) {
                 }
               })}
             </>
-          )
-        }else if (field.uiType === "Input") {
+          );
+        } else if (field.uiType === "Input") {
           return renderFields(field);
-        }else if (field.uiType === "Select") {
-          console.log("Select in the Field Parent attach at Main:",field)
+        } else if (field.uiType === "Select") {
+          console.log("Select in the Field Parent attach at Main:", field);
           return renderFields(field);
         }
       })}
+      {
+        <div className="ButtonContainer">
+          <button className="submtBtn">Submit</button>
+          <button className="canBtn">Cancel</button>
+        </div>
+      }
     </form>
   );
 }

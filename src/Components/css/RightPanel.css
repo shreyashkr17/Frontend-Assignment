@@ -51,7 +51,7 @@
 /* GroupContainer CSS */
 .GroupContainer{
     width: 98%;
-    height: auto;
+    height: 5vh;
     background-color: rgb(234, 245, 255);
     margin-top: 10px;
     padding: 7px;
@@ -145,4 +145,67 @@
     padding: 5px;
     font-size: 1rem;
     text-align: center;
+}
+
+
+
+
+/* Hover Container */
+.HoverContainer{
+    width: 170px;
+    height: 9vh;
+    background-color: white;
+    z-index: 100;
+    margin-left:3px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(192, 197, 255);
+    border-radius: 10px;
+    z-index: 1;
+}
+.HoverContainer h3{
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+}
+.HoverContainer h4{
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+
+
+
+
+
+/* Button Container CSS */
+.ButtonContainer{
+    width: 98%;
+    height: 5vh;
+    background-color: rgb(234, 245, 255);
+    margin-top: 10px;
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
+}
+.submtBtn{
+    width: 100px;
+    border: 1px solid rgb(192, 197, 255);
+    border-radius: 10px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: rgb(176, 176, 255);
+    color: white;
+    margin-right: 10px;
+}
+.canBtn{
+    width: 100px;
+    border: 1px solid rgb(192, 197, 255);
+    border-radius: 10px;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: white;
+    color:rgb(176, 176, 255) ;
 }
