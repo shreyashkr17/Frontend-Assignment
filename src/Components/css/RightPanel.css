@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+.Header_New_Pizza{
+    font-size: 1.2rem;
+    font-family: 'Noto Sans', sans-serif;
+}
+.hr{
+    margin-top: 5px;
+    background-color: black;
+    opacity: 0.3;
+}
+.InputContainer{
+    width: 98%;
+    height: 5vh;
+    padding: 7px;
+    background-color: rgb(234, 245, 255);
+    margin-top: 10px;
+    display: flex;
+}
+.InputLabel{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+}
+.InputLabel span{
+    color: red;
+}
+.InputCont{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.InputFormCase{
+    width: 100%;
+    height: 70%;
+    border: 2px solid rgb(192, 197, 255);
+    border-radius: 5px;
+    padding: 3px;
+    /* padding: 7px; */
+}
+
+
+
+
+
+
+/* GroupContainer CSS */
+.GroupContainer{
+    width: 98%;
+    height: auto;
+    background-color: rgb(234, 245, 255);
+    margin-top: 10px;
+    padding: 7px;
+}
+
+
+
+/* Radio Css */
+.RadioContCase{
+    width: 98%;
+    height: 5vh;
+    padding: 3px;
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-around;
+    /* justify-content: center; */
+}
+.RadioContainer{
+    width: 46%;
+    /* height: 7vh; */
+    display: flex;
+    border: 2px solid rgb(192, 197, 255);
+    align-items: center;
+    padding: 5px;
+    flex-direction: row;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.RadioFormCase{
+    display: none;
+}
+.RadioH1Cont{
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* text-align: center; */
+    margin: auto;
+}
+.RadioInput{
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+}
+.selectedRadioLabel {
+    background-color: #ffffff; /* or any other color you prefer */
+}
+
+
+
+/* Select Container CSS */
+.SelectCont{
+    width: 98%;
+    height: 5vh;
+    display: flex;
+    margin-top: 10px;
+}
+.SelectTag{
+    margin-left: 10px;
+    width: 48.2%;
+    border: 2px solid rgb(192, 197, 255);
+    border-radius: 5px;
+    background-color: rgb(234, 245, 255);
+}
+.optionSelect{
+    font-family: 'Noto Sans', sans-serif;
+    padding: 5px;
+    font-size: 1rem;
+}
+
+
+
+/* Switch Container CSS */
+.SwitchCont{
+    width: 100%;
+    height: 5vh;
+    background-color: rgb(234, 245, 255);
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    margin-top: 10px;
+}
+.SwitchInputCont{
+    width: 7%;
+    /* font-size: large; */
+}
+.SwitchLabel{
+    font-family: 'Noto Sans', sans-serif;
+    padding: 5px;
+    font-size: 1rem;
+    text-align: center;
+}
