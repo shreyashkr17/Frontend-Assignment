@@ -1,26 +1,24 @@
-import React from 'react';
-import './css/Home.css';
-import { Link } from 'react-router-dom';
-import HomePizza from '../Components/Pizza/HomePizza';
-import HomePasta from '../Components/Pasta/HomePasta';
+import React, {useEffect, useState} from 'react'
+import './css/Home.css'
+import LeftPanel from '../Components/Leftpanel'
+import RightPanel from '../Components/Rightpanel'
 
 function Home() {
+    const [schema, setSchema] = useState([]);
   return (
     <div className='Home'>
-      <div className="HomeParentContainer">
-        <div className="HomePizza">
-          <Link to="/homepizza">
-            <h2>Home Pizza</h2>
-          </Link>
+      <div className="split-view">
+        <div className="left-view">
+            <LeftPanel schema={schema} setSchema={setSchema}/>
         </div>
-        <div className="HomePasta">
-          <Link to="/homepasta">
-            <h2>Home Pasta</h2>
-          </Link>
-        </div>
-      </div>
+        {schema && schema.length > 0 && <div className="right-view">
+            <div className={`${schema?"FormContainer":"FormContainerDisp"}`}>
+              <RightPanel schema={schema}/>
+            </div>
+        </div>}
+      </div> 
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Home
