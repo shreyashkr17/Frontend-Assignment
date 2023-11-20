@@ -1,15 +1,18 @@
 import { isVisible } from "@testing-library/user-event/dist/utils";
 import React, { useEffect, useState } from "react";
-import "./css/RightPanel.css";
+import "../css/RightPanel.css";
 import InfoIcon from "@mui/icons-material/Info";
 
 function RightPanel({ schema }) {
   const [naplesCheck, setNaplesCheck] = useState(true);
   const [nyCheck, setNyCheck] = useState(false);
 
+  const [formData, setFormData] = useState({})
+
   // Input Case Hovering State Change
   const [isHoverInput, setIsHoverInput] = useState(false);
   const [isHoverInputTwo, setIsHoverInputTwo] = useState(false);
+  const [isHoverInputThree,setIsHoverInputThree] = useState(false);
 
   // Group Case Hovering State Change
   const [isHoverGrp, setIsHoverGrp] = useState(false);
@@ -21,6 +24,9 @@ function RightPanel({ schema }) {
   const [isHoverSelectThree, setIsHoverSelectThree] = useState(false);
   const [isHoverSelectFour, setIsHoverSelectFour] = useState(false);
   const [isHoverSelectFive, setIsHoverSelectFive] = useState(false);
+  const [isHoverSelectSix, setIsHoverSelectSix] = useState(false);
+  const [isHoverSelectSeven, setIsHoverSelectSeven] = useState(false);
+  const [isHoverSelectEight, setIsHoverSelectEight] = useState(false);
 
   // Switch Case Hovering State Change
   const [isHoverSwitch,setIsHoverSwitch] = useState(false);
@@ -144,6 +150,39 @@ function RightPanel({ schema }) {
     }
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const formDataToSend = {};
+
+    schema.forEach((field) => {
+      if (field.uiType === "Group" && field.label === "Pizza_type") {
+        const isSelectedTab =
+          (field.label === "New York Style Pizza" && nyCheck) ||
+          (field.label === "Naples Style Pizza" && naplesCheck);
+
+        if (isSelectedTab) {
+          // Include data for the selected tab
+          formDataToSend[field.label] = {};
+          field.subParameters.forEach((subParam) => {
+            const inputElement = document.querySelector(
+              `.InputFormCase[name="${subParam.jsonKey}"]`
+            )
+            formDataToSend[field.label][subParam.jsonKey] = inputElement.value
+          });
+        }
+      }else {
+        const inputElement = document.querySelector(
+          `.InputFormCase[name="${field.jsonKey}"]`
+        );
+        // Include data for non-group fields
+        formDataToSend[field.jsonKey] = inputElement.value;
+      }
+    });
+
+    console.log("FormData to send in the backend", formDataToSend);
+  }
+
   const renderFields = (field) => {
     console.log("Field in the RenderFied function:", field.uiType);
     switch (field.uiType) {
@@ -164,14 +203,21 @@ function RightPanel({ schema }) {
                   if (field.label === "Pizza Name") {
                     setIsHoverInput(true);
                     setIsHoverInputTwo(false);
+                    setIsHoverInputThree(false);
                   } else if (field.label === "Type") {
-                    setIsHoverInputTwo(true);
+                    setIsHoverInputTwo(false);
+                    setIsHoverInput(true);
+                    setIsHoverInputThree(false);
+                  }else if(field.label === "Pasta Name"){
+                    setIsHoverInputTwo(false);
                     setIsHoverInput(false);
+                    setIsHoverInputThree(true);
                   }
                 }}
                 onMouseLeave={() => {
                   setIsHoverInput(false);
                   setIsHoverInputTwo(false);
+                  setIsHoverInputThree(false);
                 }}
               />
               {isHoverInput && field.label === "Pizza Name" && (
@@ -182,6 +228,13 @@ function RightPanel({ schema }) {
                 </div>
               )}
               {isHoverInputTwo && field.label === "Type" && (
+                <div className="HoverContainer">
+                  <h3>{field.label}</h3>
+                  <hr className="hr" />
+                  <h4>{field.description}</h4>
+                </div>
+              )}
+              {isHoverInputThree && field.label === "Pasta Name" && (
                 <div className="HoverContainer">
                   <h3>{field.label}</h3>
                   <hr className="hr" />
@@ -251,6 +304,7 @@ function RightPanel({ schema }) {
           </div>
         );
       case "Radio":
+        const selectedRadioValue = schema[field.jsonKey] || field.validate.defaultValue;
         console.log("Radio Field", field);
         return (
           <div className="RadioContCase">
@@ -258,7 +312,7 @@ function RightPanel({ schema }) {
               field.validate.options.map((option, idx) => (
                 <label
                   key={idx}
-                  className={`RadioContainer`}
+                  className={`RadioContainer ${option.value === selectedRadioValue? "selectedRadioLabel":""}`}
                   onClick={(e) => handleRadioClick(e, field)}
                 >
                   <input
@@ -347,7 +401,12 @@ function RightPanel({ schema }) {
           <>
             <div className="SelectCont">
               <label className="InputLabel">
-                {field.label}
+                {
+                field.label === "Main_topping" ? "Main Topping" :
+                  field.label === "Second_topping" ? "Second Topping" :
+                  field.label === "Topping_type" ? "Topping Type" :
+                  field.label
+                }
                 <span>*</span>
                 <InfoIcon
                   style={{
@@ -363,30 +422,72 @@ function RightPanel({ schema }) {
                       setIsHoverSelectThree(false);
                       setIsHoverSelectFour(false);
                       setIsHoverSelectFive(false);
+                      setIsHoverSelectSix(false);
+                      setIsHoverSelectSeven(false);
+                      setIsHoverSelectEight(false);
                     } else if (field.label === "Sauce") {
                       setIsHoverSelect(false);
                       setIsHoverSelectTwo(true);
                       setIsHoverSelectThree(false);
                       setIsHoverSelectFour(false);
                       setIsHoverSelectFive(false);
+                      setIsHoverSelectSix(false);
+                      setIsHoverSelectSeven(false);
+                      setIsHoverSelectEight(false);
                     } else if (field.label === "Main_topping") {
                       setIsHoverSelect(false);
                       setIsHoverSelectTwo(false);
                       setIsHoverSelectThree(true);
                       setIsHoverSelectFour(false);
                       setIsHoverSelectFive(false);
+                      setIsHoverSelectSix(false);
+                      setIsHoverSelectSeven(false);
+                      setIsHoverSelectEight(false);
                     } else if (field.label === "Second_topping") {
                       setIsHoverSelect(false);
                       setIsHoverSelectTwo(false);
                       setIsHoverSelectThree(false);
                       setIsHoverSelectFour(true);
                       setIsHoverSelectFive(false);
+                      setIsHoverSelectSix(false);
+                      setIsHoverSelectSeven(false);
+                      setIsHoverSelectEight(false);
                     } else if (field.label === "Size") {
                       setIsHoverSelect(false);
                       setIsHoverSelectTwo(false);
                       setIsHoverSelectThree(false);
                       setIsHoverSelectFour(false);
                       setIsHoverSelectFive(true);
+                      setIsHoverSelectSix(false);
+                      setIsHoverSelectSeven(false);
+                      setIsHoverSelectEight(false);
+                    }else if(field.label === "Topping_type"){
+                      setIsHoverSelect(false);
+                      setIsHoverSelectTwo(false);
+                      setIsHoverSelectThree(false);
+                      setIsHoverSelectFour(false);
+                      setIsHoverSelectFive(false);
+                      setIsHoverSelectSix(true);
+                      setIsHoverSelectSeven(false);
+                      setIsHoverSelectEight(false);
+                    }else if(field.label === "Cheese"){
+                      setIsHoverSelect(false);
+                      setIsHoverSelectTwo(false);
+                      setIsHoverSelectThree(false);
+                      setIsHoverSelectFour(false);
+                      setIsHoverSelectFive(false);
+                      setIsHoverSelectSix(false);
+                      setIsHoverSelectSeven(true);
+                      setIsHoverSelectEight(false);
+                    }else if(field.label === "Portion"){
+                      setIsHoverSelect(false);
+                      setIsHoverSelectTwo(false);
+                      setIsHoverSelectThree(false);
+                      setIsHoverSelectFour(false);
+                      setIsHoverSelectFive(false);
+                      setIsHoverSelectSix(false);
+                      setIsHoverSelectSeven(false);
+                      setIsHoverSelectEight(true);
                     }
                   }}
                   onMouseLeave={() => {
@@ -395,9 +496,12 @@ function RightPanel({ schema }) {
                     setIsHoverSelectThree(false);
                     setIsHoverSelectFour(false);
                     setIsHoverSelectFive(false);
+                    setIsHoverSelectSix(false);
+                    setIsHoverSelectSeven(false);
+                    setIsHoverSelectEight(false);
                   }}
                 />
-                {isHoverSelect && field.label === "Slices" && (
+              {isHoverSelect && field.label === "Slices" && (
                 <div className="HoverContainer">
                   <h3>{field.label}</h3>
                   <hr className="hr" />
@@ -432,6 +536,27 @@ function RightPanel({ schema }) {
                   <h4>{field.description}</h4>
                 </div>
               )}
+              {isHoverSelectSix && field.label === "Topping_type" && (
+                <div className="HoverContainer">
+                  <h3>Topping Type</h3>
+                  <hr className="hr" />
+                  <h4>{field.description}</h4>
+                </div>
+              )}
+              {isHoverSelectSeven && field.label === "Cheese" && (
+                <div className="HoverContainer">
+                  <h3>{field.label}</h3>
+                  <hr className="hr" />
+                  <h4>{field.description}</h4>
+                </div>
+              )}
+              {isHoverSelectEight && field.label === "Portion" && (
+                <div className="HoverContainer">
+                  <h3>{field.label}</h3>
+                  <hr className="hr" />
+                  <h4>{field.description}</h4>
+                </div>
+              )}
               </label>
               <select className="SelectTag">
                 {field.validate &&
@@ -455,7 +580,7 @@ function RightPanel({ schema }) {
   };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       {schema.map((field) => {
         if (field.uiType === "Group" && field.label === "Pizza_type") {
           return (
@@ -529,8 +654,8 @@ function RightPanel({ schema }) {
       })}
       {
         <div className="ButtonContainer">
-          <button className="submtBtn">Submit</button>
-          <button className="canBtn">Cancel</button>
+          <button type="submit" className="submtBtn">Submit</button>
+          <button type="button" className="canBtn">Cancel</button>
         </div>
       }
     </form>

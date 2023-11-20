@@ -99,7 +99,7 @@
     text-align: center;
 }
 .selectedRadioLabel {
-    background-color: #ffffff; /* or any other color you prefer */
+    background-color: rgb(234, 245, 255); /* or any other color you prefer */
 }
 
 
@@ -152,7 +152,7 @@
 
 /* Hover Container */
 .HoverContainer{
-    width: 170px;
+    width: 150px;
     height: 9vh;
     background-color: white;
     z-index: 100;
@@ -166,7 +166,7 @@
 }
 .HoverContainer h3{
     font-family: 'Noto Sans', sans-serif;
-    font-size: 1rem;
+    font-size: 0.85rem;
 }
 .HoverContainer h4{
     font-family: 'Noto Sans', sans-serif;
@@ -197,6 +197,7 @@
     font-weight: 600;
     background-color: rgb(176, 176, 255);
     color: white;
+    cursor: pointer;
     margin-right: 10px;
 }
 .canBtn{
@@ -207,5 +208,6 @@
     font-size: 1rem;
     font-weight: 600;
     background-color: white;
+    cursor: pointer;
     color:rgb(176, 176, 255) ;
 }

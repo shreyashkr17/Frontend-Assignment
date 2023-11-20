@@ -1,28 +1,26 @@
-import React, {useEffect, useState} from 'react'
-import './css/Home.css'
-import LeftPanel from '../Components/LeftPanel'
-import RightPanel from '../Components/RightPanel'
-import uiSchameExample from '../example.json'
+import React from 'react';
+import './css/Home.css';
+import { Link } from 'react-router-dom';
+import HomePizza from '../Components/Pizza/HomePizza';
+import HomePasta from '../Components/Pasta/HomePasta';
 
 function Home() {
-    const [schema, setSchema] = useState([]);
-    // useEffect(()=>{
-    //     setSchema(uiSchameExample)
-    // },[])
   return (
     <div className='Home'>
-      <div className="split-view">
-        <div className="left-view">
-            <LeftPanel schema={schema} setSchema={setSchema}/>
+      <div className="HomeParentContainer">
+        <div className="HomePizza">
+          <Link to="/homepizza">
+            <h2>Home Pizza</h2>
+          </Link>
         </div>
-        {schema && schema.length > 0 && <div className="right-view">
-            <div className={`${schema?"FormContainer":"FormContainerDisp"}`}>
-              <RightPanel schema={schema}/>
-            </div>
-        </div>}
-      </div> 
+        <div className="HomePasta">
+          <Link to="/homepasta">
+            <h2>Home Pasta</h2>
+          </Link>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
