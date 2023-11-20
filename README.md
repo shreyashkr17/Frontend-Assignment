@@ -1,5 +1,5 @@
 # Getting Started with Ui-Schema
-![image](https://github.com/shreyashkr17/TrueFoundry-Assignment/assets/97216718/9fe182fd-3aa1-4c0d-b7f4-61a1fa6f20dd)
+![image](https://github.com/shreyashkr17/TrueFoundry-Assignment/assets/97216718/ffe66217-73f5-43c9-89b3-55e13a2728a5)
 
 Link for redirecting: 
 "/" ----> "Pizza Name"
