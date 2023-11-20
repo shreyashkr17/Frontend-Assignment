@@ -1,3 +1,10 @@
+# Getting Started with Ui-Schema
+![image](https://github.com/shreyashkr17/TrueFoundry-Assignment/assets/97216718/9fe182fd-3aa1-4c0d-b7f4-61a1fa6f20dd)
+
+Link for redirecting: 
+"/" ----> "Pizza Name"
+"/homepasta" ----> "Pasta Page"
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
