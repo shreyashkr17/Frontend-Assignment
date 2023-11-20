@@ -1,9 +1,18 @@
+# Steps to Follow up the Assignment:
+  ## 1. Clone the Assignemnt Repo : https://github.com/shreyashkr17/Frontend-Assignment.git
+  ## 2. Install all the Dependencies (Follow the instruction that is instructed below for the React Dependencies Installation)
+  ## 3. Open The Deployed Assignment Link: https://655af26393efb143f9fda691--delicate-brioche-d14156.netlify.app/
+  ## 4. Open the example.json and copy the content and paste it to the Leftpanel of the deployed Assignemnt.
+  ## 5. Step 4 will give the output in the RightPanel.
+  ## 6. Open the Pasta.json and copy the content and paste it to the Leftpanel of the deployed Assignemnt.
+  ## 7. Step 6 will give the output in the RightPanel.
+  
+
 # Getting Started with Ui-Schema
 ![image](https://github.com/shreyashkr17/TrueFoundry-Assignment/assets/97216718/ffe66217-73f5-43c9-89b3-55e13a2728a5)
 ![image](https://github.com/shreyashkr17/Frontend-Assignment/assets/97216718/968c51b9-2240-4dda-bf3b-79b1a1cbd8e0)
 
-
-
+  
 
 # Getting Started with Create React App
 
