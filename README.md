@@ -1,3 +1,10 @@
+# Getting Started with Ui-Schema
+![image](https://github.com/shreyashkr17/TrueFoundry-Assignment/assets/97216718/ffe66217-73f5-43c9-89b3-55e13a2728a5)
+![image](https://github.com/shreyashkr17/Frontend-Assignment/assets/97216718/968c51b9-2240-4dda-bf3b-79b1a1cbd8e0)
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
